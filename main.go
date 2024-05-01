@@ -48,7 +48,6 @@ func (s *Server) Start() error {
 func (s *Server) acceptLoop() {
 	for {
 		conn, err := s.ln.Accept()
-		fmt.Println("conn...", conn)
 		if err != nil {
 			fmt.Println("Accept Error: ", err)
 			continue
@@ -65,12 +64,8 @@ func (s *Server) readLoop(conn net.Conn) {
 	defer conn.Close()
 	buff := make([]byte, 2048)
 
-	fmt.Println("n...", conn)
-
 	for {
 		n, err := conn.Read(buff)
-
-		fmt.Println("n...", n)
 
 		if err != nil {
 			fmt.Println("Read buff Error: ", err)
